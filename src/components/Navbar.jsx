@@ -35,7 +35,7 @@ const Navbar = () => {
       <ul className='bg-gradient-to-r rounded-lg from-blue-500 via-purple-500 to-pink-500 w-full  absolute top-full'>
         {
           friendsUsers.map((friend)=>{
-            return friend._id!==id && <Link state={friend._id} onClick={()=>setfriendsUsers([])} to={'/friendProfile'} className='cursor-pointer rounded-lg flex px-2 items-center py-2 border-b-2 gap-6'>
+            return friend._id!==id && <Link state={friend._id} onClick={()=>setfriendsUsers([])} to={`/friendProfile?id=${friend._id}`} className='cursor-pointer rounded-lg flex px-2 items-center py-2 border-b-2 gap-6'>
               <img className='w-11 h-11 rounded-full' src={friend.profilePic} alt="" />
               <p className='capitalize'>{friend.name}</p>
             </Link>
