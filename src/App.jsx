@@ -39,9 +39,9 @@ function App() {
             <Route path='/login' element={login===false?<Login/>:<Navigate to='/'/>}/>
             <Route path='/register' element={login===false? <Signup/>:<Navigate to="/"/>}/>
             <Route path='/forgetpassword' element={<ForgetPassword/>}/>
-            <Route path='/profile' element={<Profile/>}/>
-            <Route path='/friendProfile' element={<FriendProfile/>}/>
-            <Route path='/chat' element={<Chat/>}/>
+            <Route path='/profile' element={login===true? <Profile/>:<Navigate to="/login"/> }/>
+            <Route path='/friendProfile' element={login===true? <FriendProfile/>: <Navigate to="/login"/>}/>
+            <Route path='/chat' element={login===true?<Chat/>:<Navigate to="/login"/>}/>
         </Routes>
 
         <ToastContainer/>
