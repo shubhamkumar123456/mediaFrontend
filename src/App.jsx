@@ -16,8 +16,10 @@ import Profile from './pages/Profile'
 import FriendProfile from './pages/FriendProfile'
 import { Header } from './components/Header'
 import Chat from './pages/Chat'
+import API_URL from './config'
 
 function App() {
+  console.log(API_URL)
   
   let userCtx = useContext(UserContext);
   console.log(userCtx)

@@ -9,7 +9,7 @@ import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 import { GoCommentDiscussion } from "react-icons/go";
 import { IoSend } from "react-icons/io5";
-
+import API_URL from '../config';
 const FriendProfile = () => {
 
   let ctx = useContext(UserContext);
@@ -26,7 +26,7 @@ const FriendProfile = () => {
         console.log(friend);
 
        async function getFriendUser(){
-        let res = await axios.get(`https://mediaapp-backend-jodl.onrender.com/api/users/getuser/${location.state}`)
+        let res = await axios.get(`${API_URL}/api/users/getuser/${location.state}`)
         let data = res.data
         if(data.success){
             // console.log(data)
@@ -35,7 +35,7 @@ const FriendProfile = () => {
         }
 
        async function getFriendPosts(){
-        let res = await axios.get(`https://mediaapp-backend-jodl.onrender.com/api/posts/getFriendPost/${location.state}`)
+        let res = await axios.get(`${API_URL}/api/posts/getFriendPost/${location.state}`)
         let data = res.data
         // console.log(data)
         if(data.success){
@@ -56,7 +56,7 @@ const FriendProfile = () => {
 
  
         const handleFollow = async()=>{
-          let res = await axios.post(`https://mediaapp-backend-jodl.onrender.com/api/users/followuser/${friend._id}`,{},{
+          let res = await axios.post(`${API_URL}/api/users/followuser/${friend._id}`,{},{
             headers:{
               'Authorization':ctx.userInfo.token
             }

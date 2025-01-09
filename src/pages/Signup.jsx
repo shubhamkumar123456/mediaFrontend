@@ -29,7 +29,7 @@ const Signup = () => {
         e.preventDefault();
         console.log(userDetails);
 
-        let res = await fetch('https://mediaapp-backend-jodl.onrender.com/api/users/create',{
+        let res = await fetch(API_URL+'/api/users/create',{
             method:"POST",
             headers:{
                 'content-type':'application/json'

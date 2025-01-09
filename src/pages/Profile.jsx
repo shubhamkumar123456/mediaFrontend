@@ -14,7 +14,7 @@ const Profile = () => {
     console.log(userInfo)
 
     async function getUserData(){
-            let res = await axios.get('https://mediaapp-backend-jodl.onrender.com/api/users/getUser',{
+            let res = await axios.get(API_URL+'/api/users/getUser',{
                 headers:{
                     'Authorization':ctx.userInfo.token
                 }
@@ -27,7 +27,7 @@ const Profile = () => {
     const [allPosts, setAllPosts] = useState([]);
     console.log(allPosts)
     async function yourPosts() {
-        let res = await axios.get('https://mediaapp-backend-jodl.onrender.com/api/posts/getYourPost',{
+        let res = await axios.get(API_URL+'/api/posts/getYourPost',{
             headers:{
                 'Authorization':ctx.userInfo.token
             }
@@ -58,7 +58,7 @@ const Profile = () => {
       let data = res.data
       console.log(data.secure_url);
       if(data.secure_url){
-        let res1 = await axios.put(`https://mediaapp-backend-jodl.onrender.com/api/users/update/${userId}`,{profilePic:data.secure_url},{
+        let res1 = await axios.put(`${API_URL}/api/users/update/${userId}`,{profilePic:data.secure_url},{
           headers:{
             'Authorization':ctx.userInfo.token
           }
@@ -86,7 +86,7 @@ const Profile = () => {
 
     const handleUpdateSubmit = async(e)=>{
       e.preventDefault()
-      let res = await axios.put(`https://mediaapp-backend-jodl.onrender.com/api/users/update/${userId}`,userInfo,{
+      let res = await axios.put(`${API_URL}/api/users/update/${userId}`,userInfo,{
         headers:{
           'Authorization':ctx.userInfo.token
         }

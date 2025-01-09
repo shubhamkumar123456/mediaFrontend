@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import UserContext from '../context/UserContext'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import API_URL from '../config';
 const Navbar = () => {
 
   const [showDropDown, setshowDropDown] = useState(false);
@@ -18,7 +18,7 @@ const Navbar = () => {
     
     const handleInputChanger=async(e)=>{
         console.log(e.target.value)
-        let res = await axios.get(`https://mediaapp-backend-jodl.onrender.com/api/users/username?q=${e.target.value}`)
+        let res = await axios.get(`${API_URL}/api/users/username?q=${e.target.value}`)
         let data = res.data;
         console.log(data)
       setfriendsUsers(data)

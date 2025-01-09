@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import UserContext from '../context/UserContext';
-
+import API_URL from '../config';
 const Login = () => {
 
   let userCtx = useContext(UserContext);
@@ -26,7 +26,7 @@ const Login = () => {
 
         console.log(obj)
 
-        let res = await axios.post('https://mediaapp-backend-jodl.onrender.com/api/users/login',obj);
+        let res = await axios.post(API_URL+'/api/users/login',obj);
         console.log(res.data) // {msg:"login successfull", success:true, token:"56789cvb"}
         if(res.data.success){
           userCtx.AddUser(res.data)

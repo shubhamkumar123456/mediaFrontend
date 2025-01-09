@@ -4,7 +4,7 @@ import axios from 'axios';
 import UserContext from '../context/UserContext';
 import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
-
+import API_URL from '../config';
 const Sidebar = (props) => {
 
   let navigate = useNavigate()
@@ -79,7 +79,7 @@ const Sidebar = (props) => {
 
 
       const handleSubmit = async()=>{
-          let res = await axios.post('https://mediaapp-backend-jodl.onrender.com/api/posts/create',details,{
+          let res = await axios.post(API_URL+'/api/posts/create',details,{
             headers:{
               'Authorization':ctx.userInfo.token
             }

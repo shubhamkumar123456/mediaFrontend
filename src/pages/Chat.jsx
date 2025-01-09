@@ -5,9 +5,9 @@ import axios from 'axios';
 import { io } from "socket.io-client";
 import ScrollToBottom from 'react-scroll-to-bottom';
 import { formatDistanceToNow } from 'date-fns';
-
+import API_URL from '../config';
 const Chat = () => {
-  let Endpoint = "https://mediaapp-backend-jodl.onrender.com"
+  let Endpoint = API_URL
   const socketRef = useRef();
   // let socket = io(Endpoint,{transports:['websocket']});
     let location = useLocation();
@@ -24,7 +24,7 @@ const Chat = () => {
    const [allchat, setallchat] = useState([]);
    console.log(allchat)
    const getChat = async()=>{
-    let res = await axios.get(`https://mediaapp-backend-jodl.onrender.com/api/message/getchat/${friendId}`,{
+    let res = await axios.get(`${API_URL}/api/message/getchat/${friendId}`,{
         headers:{
             'Authorization':token
         }
@@ -40,7 +40,7 @@ const Chat = () => {
    },[])
 
    useEffect(()=>{
-    socketRef.current = io("https://mediaapp-backend-jodl.onrender.com", { transports: ["websocket"] });
+    socketRef.current = io(API_URL, { transports: ["websocket"] });
     socketRef.current.emit('addUser',userStore?.userInfo.userId)
    },[])
 
@@ -54,7 +54,7 @@ const Chat = () => {
         let obj = {
             text: inputRef.current.value
         }
-        let res = await axios.post(`https://mediaapp-backend-jodl.onrender.com/api/message/sendmessage/${friendId}`,obj,{
+        let res = await axios.post(`${API_URL}/api/message/sendmessage/${friendId}`,obj,{
             headers:{
                 'Authorization':token
             }
@@ -84,6 +84,7 @@ const Chat = () => {
     if(newMessage){
       setallchat([...allchat,newMessage])
     }
+    
   },[newMessage])
 
   return (

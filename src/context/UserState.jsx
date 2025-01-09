@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import UserContext from './UserContext';
 import { jwtDecode } from "jwt-decode";
 import axios from 'axios';
-
+import API_URL from '../config';
 const UserState = (props) => {
     let userDetails = JSON.parse(localStorage.getItem('social'));
 
@@ -16,7 +16,7 @@ const UserState = (props) => {
 
     const getUserDetails = async()=>{
   
-      let res = await axios.get('https://mediaapp-backend-jodl.onrender.com/api/users/getuser',{
+      let res = await axios.get(API_URL+'/api/users/getuser',{
         headers:{
           'Authorization':userInfo.token
         }

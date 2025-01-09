@@ -10,7 +10,7 @@ import { IoSend } from "react-icons/io5";
 import { toast } from 'react-toastify';
 import { formatDistanceToNow } from 'date-fns';
 import { MdDeleteOutline } from "react-icons/md";
-
+import API_URL from '../config';
 const Home = () => {
   // TimeAgo.addLocale(en);
   const [openModal, setOpenModal] = useState(false);
@@ -24,7 +24,7 @@ const Home = () => {
   const [posts, setposts] = useState([]);
   console.log(posts)
   async function getAllPosts() {
-    let res = await axios.get('https://mediaapp-backend-jodl.onrender.com/api/posts/getAllPost');
+    let res = await axios.get(API_URL+'/api/posts/getAllPost');
     let data = res.data;
     setposts(data.posts)
     // console.log(data.posts)
@@ -58,7 +58,7 @@ const Home = () => {
     // console.log(obj)
     // console.log(token)
 
-    let res = await axios.post(`https://mediaapp-backend-jodl.onrender.com/api/posts/comment/${ele._id}`, obj, {
+    let res = await axios.post(`${API_URL}/api/posts/comment/${ele._id}`, obj, {
       headers: {
         'Authorization': token
       }
@@ -80,7 +80,7 @@ const Home = () => {
     console.log(comment)
     console.log(post)
 
-    let res = await axios.delete(`https://mediaapp-backend-jodl.onrender.com/api/posts/deleteComment/${commentId}/${postId}`)
+    let res = await axios.delete(`${API_URL}/api/posts/deleteComment/${commentId}/${postId}`)
     let data = res.data;
     console.log(data)
 
@@ -97,7 +97,7 @@ const Home = () => {
 
   const handleLikes= async(postId)=>{
     console.log(postId)
-    let res = await axios.put(`https://mediaapp-backend-jodl.onrender.com/api/posts/likepost/${postId}`,{},{
+    let res = await axios.put(`${API_URL}/api/posts/likepost/${postId}`,{},{
       headers:{
         'Authorization':token
       }
